@@ -72,7 +72,7 @@ begin
       E1 := Make_Edge (Model, V1, V2);
       E2 := Make_Edge (Model, V2, V3);
       E3 := Make_Edge (Model, V3, V1);
-      Edges := (E1, E2, E3);
+      Edges := [E1, E2, E3];
       F := Make_Face (Model, Edges);
       Check ("4.1 Valid Face ID", F /= Invalid_Face);
       Check ("4.2 Faces is 1", Active_Faces (Model) = 1);
@@ -139,6 +139,10 @@ begin
       V3 := Make_Vertex (Model, (0.0, 1.0, 0.0));
       E1 := Make_Edge (Model, V1, V2);
       E2 := Make_Edge (Model, V2, V3);
+      
+      Check ("8.0a Assigned E1 is valid", E1 /= Invalid_Edge);
+      Check ("8.0b Assigned E2 is valid", E2 /= Invalid_Edge);
+
       -- V=3, E=2, F=0 => 3 - 2 + 0 = 1
       Check ("8.1 Open structure characteristic is 1", Euler_Poincare_Characteristic (Model) = 1);
       Check ("8.2 Is_Valid_Manifold is False", not Is_Valid_Manifold (Model));
@@ -163,7 +167,7 @@ begin
    Put_Line ("TEST 10 — Face Capacity Limit");
    Initialize (Model);
    declare
-      Too_Many : constant Edge_Array (1 .. 33) := (others => Invalid_Edge);
+      Too_Many : constant Edge_Array (1 .. 33) := [others => Invalid_Edge];
    begin
       if Make_Face (Model, Too_Many) /= Invalid_Face then
          Check ("10.1 Should not reach here", False);
