@@ -126,7 +126,7 @@ private
    type Element_State is (Free, Active);
 
    type Bounded_Edge_Array is record
-      Elements : Edge_Array (1 .. Max_Face_Edges) := (others => Invalid_Edge);
+      Elements : Edge_Array (1 .. Max_Face_Edges) := [others => Invalid_Edge];
       Count    : Natural := 0;
    end record;
 
