@@ -96,7 +96,7 @@ package body Boundary_Representation is
       F     : out Face_ID) 
    is
       Temp     : B_Rep_Model;
-      No_Edges : constant Edge_Array (1 .. 0) := (others => Invalid_Edge);
+      No_Edges : constant Edge_Array (1 .. 0) := [others => Invalid_Edge];
    begin
       -- MVFS creates the initial topology starting point (1 Vertex, 1 Face, 0 Edges)
       Initialize (Temp);
